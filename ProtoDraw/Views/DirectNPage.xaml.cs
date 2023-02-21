@@ -25,9 +25,6 @@ namespace DirectNXAML.Views
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
-
-            viewModel.ViewPage = new WeakReference<Page>(this);
-            viewModel.ViewSwapChainPanel = new WeakReference<SwapChainPanel>(_scp);
         }
 
         private void DirectNPage_Loaded(object sender, RoutedEventArgs e)

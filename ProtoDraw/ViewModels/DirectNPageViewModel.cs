@@ -55,7 +55,6 @@ namespace DirectNXAML.ViewModels
         internal DirectNPageViewModel()
         {
             m_renderer = new Dx11Renderer();
-            //SCPSize_Changed += m_renderer.Panel_SizeChanged;
             SetState_DrawLineCommand += SetState_DrawLine;
             SetState_SelectCommand += SetState_Select;
 
@@ -90,15 +89,11 @@ namespace DirectNXAML.ViewModels
         {
             // reset any state machine before here
             SetLineState(ELineGetState.none);
-            //(Application.Current as App).CurrentWindow.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 0);
         }
         internal ICommand ShaderPanel_SizeChangedCommand { get; private set; }
         private void ShaderPanel_SizeChanged(SizeChangedEventArgs args)
         {
             SetActualSizeText();
-            var s = args.NewSize;
-            RenderWidth = s.Width;
-            RenderHeight = s.Height;
             SCPSize_Changed?.Invoke(this, args);
         }
 
@@ -481,12 +476,6 @@ namespace DirectNXAML.ViewModels
 
         #region interface variables / events
         public event SizeChangedEventHandler SCPSize_Changed;
-
-        internal WeakReference<Page> ViewPage { get; set; }
-        internal WeakReference<SwapChainPanel> ViewSwapChainPanel { get; set; }
-
-        internal double RenderHeight { get; set; }
-        internal double RenderWidth { get; set; }
         internal double ActualHeight { get; set; }
         internal double ActualWidth { get; set; }
         internal Vector2 SwapChainActualSize { get; set; }
